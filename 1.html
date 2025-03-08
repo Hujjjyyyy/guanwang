@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUSHUN 发帖墙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background: #f8f8f8;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* 主体内容 */
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 60px;
+            padding: 2rem;
+        }
+
+        /* 发帖表单 */
+        .post-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            margin-bottom: 1rem;
+        }
+
+        .submit-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        /* 帖子列表 */
+        .post-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .post-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        /* 底部样式 */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="/">首页</a>
+            <a href="/notice">公告</a>
+            <a href="/products">商品</a>
+            <a href="/forum">留言板</a>
+        </div>
+    </nav>
+
+    <!-- 发帖墙主体 -->
+    <div class="container">
+        <!-- 发帖表单 -->
+        <div class="post-form">
+            <textarea placeholder="分享你的时尚见解..."></textarea>
+            <button class="submit-btn">发布动态</button>
+        </div>
+
+        <!-- 帖子列表 -->
+        <div class="post-list">
+            <!-- 示例帖子 -->
+            <div class="post-item">
+                <div class="post-header">
+                    <span>时尚达人</span>
+                    <span>2024-03-15 14:30</span>
+                </div>
+                <p>新入手的大师系列托特包，皮质手感超乎想象！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer>
+        <p>© 2024 SUSHUN 版权所有</p>
+    </footer>
+
+    <script>
+        // 动态发布功能
+        const textarea = document.querySelector('textarea');
+        const submitBtn = document.querySelector('.submit-btn');
+        const postList = document.querySelector('.post-list');
+
+        submitBtn.addEventListener('click', () => {
+            const content = textarea.value.trim();
+            if (content) {
+                const newPost = document.createElement('div');
+                newPost.className = 'post-item';
+                newPost.innerHTML = `
+                    <div class="post-header">
+                        <span>${'用户' + Math.floor(Math.random()*1000)}</span>
+                        <span>${new Date().toLocaleString()}</span>
+                    </div>
+                    <p>${content}</p>
+                `;
+                postList.prepend(newPost);
+                textarea.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
