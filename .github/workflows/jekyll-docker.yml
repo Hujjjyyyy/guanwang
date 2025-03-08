@@ -1,0 +1,20 @@
+名字: 哲基尔站点CI
+
+在:
+推:
+分支: [ "主要" ]
+拉取请求:
+分支: [ "主要" ]
+
+工作:
+建设:
+
+连续运行: Ubuntu-最新版
+
+步伐:
+    - 使用: 动作/签出@v4
+    - 名字: 在jekyll/builder容器中构建站点
+奔跑: |
+码头运行\
+-v $ { { github . workspace } }:/SRV/Jekyll-v $ { { github . workspace } }/_ site:/SRV/Jekyll/_ site \
+Jekyll/builder:latest/bin/bash-c " chmod-R 777/SRV/Jekyll & & Jekyll build-future "
